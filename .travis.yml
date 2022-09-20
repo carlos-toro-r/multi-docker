@@ -13,5 +13,12 @@ after_success:
   - docker build -t catoror/multi-nginx ./nginx
   - docker build -t catoror/multi-server ./server
   - docker build -t catoror/multi-worker ./worker
+  # login to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker hub
+  - docker push catoror/multi-client
+  - docker push catoror/multi-nginx
+  - docker push catoror/multi-server
+  - docker push catoror/multi-worker
 
 language: generic
